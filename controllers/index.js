@@ -1,9 +1,10 @@
 //Outer Index
 const router = require("express").Router();
-const Review = require("../models/Review");
+const Review = require("../models/newpost");
 const apiRoutes = require("./api");
 
 router.use("/api", apiRoutes);
+
 router.get("/", async (req, res) => {
   const result = await Review.findAll({});
   const allReviews = result.map((review) => {
@@ -17,10 +18,10 @@ router.get("/", async (req, res) => {
   });
 });
 router.get("/login", (req, res) => {
-  res.render("loginPage");
+  res.render("login");
 });
-router.get("/dashboard", (req, res) => {
-  res.render("dashboard", {
+router.get("/newpost", (req, res) => {
+  res.render("newpost", {
     logged_in: req.session.logged_in,
     user_name: req.session.user_name,
   });
